@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.struts:struts2-core:2.5.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.struts/struts2-core/2.5.1/4d896f8f509990d9da198423e56c36de0d1c03b6/struts2-core-2.5.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.struts/struts2-core/2.5.1/50021b367d1182128f0b295b2631992b89fcb4d8/struts2-core-2.5.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

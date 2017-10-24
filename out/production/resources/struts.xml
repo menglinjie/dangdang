@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+
+    <package name="user" extends="struts-default" namespace="/user">
+        <action name="login" class="com.mlj.testSSH.action.UserAction" method="login">
+            <result name="success" type="chain">
+                showAll
+            </result>
+            <result name="error">
+                /LoginFailed.jsp
+            </result>
+        </action>
+
+        <action name="rejister" method="rejister" class="com.mlj.testSSH.action.UserAction">
+            <result name="success">
+                /index.jsp
+            </result>
+            <result name="error">
+                /registersuccess.jsp
+            </result>
+        </action>
+
+        <action name="showAll" class="com.mlj.testSSH.action.UserAction" method="showAll">
+            <result name="showAll">
+                /showAll.jsp
+            </result>
+        </action>
+
+        <action name="delete" class="com.mlj.testSSH.action.UserAction" method="delete">
+            <result name="error" type="chain">
+                showAll
+            </result>
+            <result name="success" type="chain">
+                showAll
+            </result>
+        </action>
+    </package>
+
+</struts>
