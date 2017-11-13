@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mlj.dangdang.dao.Userdao">
+    <!--&lt;!&ndash;缓存配置&ndash;&gt;-->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache">-->
+
+    <!--<property name="timeToIdleSeconds" value="3600"/>&lt;!&ndash;1 hour&ndash;&gt;-->
+
+    <!--<property name="timeToLiveSeconds" value="3600"/>&lt;!&ndash;1 hour&ndash;&gt;-->
+
+    <!--<property name="maxEntriesLocalHeap" value="1000"/>-->
+
+    <!--<property name="maxEntriesLocalDisk" value="10000000"/>-->
+
+    <!--<property name="memoryStoreEvictionPolicy" value="LRU"/>-->
+
+    <!--</cache>-->
+
+    <insert id="insert" parameterType="User">
+        INSERT INTO duser (uname, email, password, create_time, status)
+        VALUES (#{name}, #{email}, #{password}, #{createTime}, #{status})
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+            SELECT @@IDENTITY
+        </selectKey>
+    </insert>
+
+    <resultMap id="userMap" type="User">
+        <id property="id" column="id"></id>
+        <result column="uname" property="name"></result>
+        <result column="email" property="email"></result>
+        <result column="password" property="password"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="status" property="status"></result>
+    </resultMap>
+
+    <select id="select" resultMap="userMap">
+        SELECT *
+        FROM duser
+        WHERE email = #{email} AND status = 1
+    </select>
+
+    <select id="selectByEmail" parameterType="String" resultMap="userMap">
+        SELECT *
+        FROM duser
+        WHERE email = #{email} AND status != -1
+    </select>
+
+    <select id="selectById" resultMap="userMap" parameterType="int">
+        SELECT *
+        FROM duser
+        WHERE id = #{id} AND status = 1
+    </select>
+
+    <update id="update">
+        UPDATE duser
+        SET status = #{status}
+        WHERE id = #{userId}
+    </update>
+
+</mapper>
