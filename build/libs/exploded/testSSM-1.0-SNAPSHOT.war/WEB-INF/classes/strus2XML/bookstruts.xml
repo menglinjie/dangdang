@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+
+    <package name="book" extends="struts-default" namespace="/book">
+        <action name="recommendBook" method="recommendBook" class="com.mlj.dangdang.action.Bookaction">
+            <result name="recommend">
+                /main/recommend.jsp
+            </result>
+        </action>
+        <action name="hotBook" class="com.mlj.dangdang.action.Bookaction" method="hotBook">
+            <result name="hot">
+                /main/hot.jsp
+            </result>
+        </action>
+        <action name="newBook" class="com.mlj.dangdang.action.Bookaction" method="newBook">
+            <result name="new">
+                /main/new.jsp
+            </result>
+        </action>
+
+    </package>
+
+</struts>

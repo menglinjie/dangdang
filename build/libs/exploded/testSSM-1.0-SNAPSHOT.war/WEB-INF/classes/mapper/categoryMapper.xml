@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mlj.dangdang.dao.CategoryDao">
+    <!--&lt;!&ndash;缓存配置&ndash;&gt;-->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache">-->
+
+    <!--<property name="timeToIdleSeconds" value="3600"/>&lt;!&ndash;1 hour&ndash;&gt;-->
+
+    <!--<property name="timeToLiveSeconds" value="3600"/>&lt;!&ndash;1 hour&ndash;&gt;-->
+
+    <!--<property name="maxEntriesLocalHeap" value="1000"/>-->
+
+    <!--<property name="maxEntriesLocalDisk" value="10000000"/>-->
+
+    <!--<property name="memoryStoreEvictionPolicy" value="LRU"/>-->
+
+    <!--</cache>-->
+
+    <!--<resultMap id="categoryMap2" type="Category">-->
+    <!--<id property="id" column="id"></id>-->
+    <!--<result property="cname" column="cname"></result>-->
+    <!--<result property="count" column="count"></result>-->
+    <!--<collection property="categoryList" ofType="Category">-->
+    <!--<id property="id" column="id"></id>-->
+    <!--<result property="cname" column="cname"></result>-->
+    <!--<result property="count" column="count"></result>-->
+    <!--</collection>-->
+    <!--<collection property="bookList" ofType="Category">-->
+    <!--<id property="id" column="id"></id>-->
+    <!--<result property="bname" column="bname"></result>-->
+    <!--<result property="author" column="author"></result>-->
+    <!--<result property="publisher" column="publisher"></result>-->
+    <!--<result property="publishTime" column="publish_time"></result>-->
+    <!--<result property="brief" column="brief"></result>-->
+    <!--<result property="price" column="price"></result>-->
+    <!--<result property="ddprice" column="ddprice"></result>-->
+    <!--</collection>-->
+    <!--</resultMap>-->
+
+    <resultMap id="categoryMap1" type="Category">
+        <id property="id" column="id"></id>
+        <result property="cname" column="cname"></result>
+        <result property="count" column="count"></result>
+        <collection property="categoryList" ofType="Category" javaType="java.util.List" column="id" select="getById"/>
+    </resultMap>
+
+    <!--根据父类id查找其子类别-->
+    <select id="getById" resultMap="categoryMap1" parameterType="int">
+        SELECT *
+        FROM dcategory
+        WHERE parent_id = #{id}
+    </select>
+
+    <!--查找所有类别(递归)-->
+    <select id="getAll" resultMap="categoryMap1" parameterType="int">
+        SELECT *
+        FROM dcategory
+        WHERE 1 = 1
+        <choose>
+            <when test="categoryId ==0">
+                AND dcategory.parent_id IS NULL
+            </when>
+            <otherwise>
+                AND id = #{categoryId}
+            </otherwise>
+        </choose>
+    </select>
+
+</mapper>

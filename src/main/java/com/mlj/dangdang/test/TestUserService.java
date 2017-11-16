@@ -23,9 +23,9 @@ public class TestUserService {
     public void testRegister() {
         User user = new User();
         user.setCreateTime(new Date());
-        user.setEmail("1111");
-        user.setName("mmm11");
-        user.setPassword(MD5Util.generate("11111"));
+        user.setEmail("11");
+        user.setName("11");
+        user.setPassword(MD5Util.generate("11"));
         user.setStatus(1);
 
         userService.rejister(user);
@@ -34,8 +34,8 @@ public class TestUserService {
 
     @Test
     public void testLogin() {
-        User user = userService.login("111");
-        boolean b = MD5Util.verify("11", user.getPassword());
+        User user = userService.login("2411988749@qq.com");
+        boolean b = MD5Util.verify("111111", user.getPassword());
         System.out.println(b);
        // System.out.println(user.getId() + user.getName());
     }

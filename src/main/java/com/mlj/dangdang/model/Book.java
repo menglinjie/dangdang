@@ -25,6 +25,15 @@ public class Book {
     private String authorBrief;//作者简介
     private String comment;//媒体评论
     private int sales;//销量
+    private String img;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     private Category category;//所属类别
 
@@ -204,5 +213,33 @@ public class Book {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", bname='" + bname + '\'' +
+                ", author='" + author + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", publishTime=" + publishTime +
+                ", price=" + price +
+                ", ddprice=" + ddprice +
+                ", brief='" + brief + '\'' +
+                ", edition=" + edition +
+                ", printTime=" + printTime +
+                ", print=" + print +
+                ", ISBN='" + ISBN + '\'' +
+                ", words=" + words +
+                ", pages=" + pages +
+                ", format='" + format + '\'' +
+                ", paper=" + paper +
+                ", packa='" + packa + '\'' +
+                ", recommend=" + recommend +
+                ", authorBrief='" + authorBrief + '\'' +
+                ", comment='" + comment + '\'' +
+                ", sales=" + sales +
+                ", category=" + category +
+                '}';
     }
 }

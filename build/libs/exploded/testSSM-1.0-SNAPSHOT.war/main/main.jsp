@@ -6,7 +6,10 @@
     <link href="../css/book.css" rel="stylesheet" type="text/css"/>
     <link href="../css/second.css" rel="stylesheet" type="text/css"/>
     <link href="../css/secBook_Show.css" rel="stylesheet" type="text/css"/>
-
+    <script type="text/javascript" src="../js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../js/jquerySession.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
 </head>
 <body>
 &nbsp;
@@ -22,6 +25,7 @@
 
     <!--左栏开始-->
     <div id="left" class="book_left">
+        <s:action name="showAll" namespace="/category" executeResult="true"></s:action>
     </div>
     <!--左栏结束-->
 
@@ -30,17 +34,20 @@
 
         <!--推荐图书开始-->
         <div class=second_c_border1 id="recommend">
+            <s:action name="recommendBook" namespace="/book" executeResult="true"></s:action>
         </div>
 
         <!--推荐图书结束-->
 
         <!--热销图书开始-->
         <div class="book_c_border2" id="hot">
+            <s:action name="hotBook" namespace="/book" executeResult="true"></s:action>
         </div>
         <!--热销图书结束-->
 
         <!--最新上架图书开始-->
         <div class="book_c_border2" id="new">
+            <s:action name="newBook" namespace="/book" executeResult="true"></s:action>
         </div>
 
         <!--最新上架图书结束-->
@@ -59,10 +66,14 @@
                     新书热卖榜
                 </h2>
                 <div id="NewProduct_1_o_t" onmouseover="">
+                    <s:iterator value="newhotbooks" var="nhb">
+                        <s:property value="#nhb.bname"></s:property><br/>
+                    </s:iterator>
                     <h3 class="second">
                         <span class="dot_r"> </span><a href="#" target="_blank">更多&gt;&gt;</a>
                     </h3>
                 </div>
+
             </div>
         </div>
     </div>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+
+    <package name="user" extends="struts-default" namespace="/user">
+        <action name="rejister" class="com.mlj.dangdang.action.UserAction" method="rejister">
+            <result name="rejister">
+                /user/verify_form.jsp
+            </result>
+        </action>
+        <action name="login" class="com.mlj.dangdang.action.UserAction" method="login">
+            <result name="address">
+                /user/login_ok.jsp
+            </result>
+            <result name="main" type="chain">
+                newhotBook
+            </result>
+            <result name="error">
+                /user/login_form.jsp
+            </result>
+        </action>
+        <action name="checkEmail" class="com.mlj.dangdang.action.UserAction" method="checkEmail">
+
+        </action>
+        <!--<action name="get" class="com.mlj.dangdang.action.UserAction" method="get">-->
+        <!--<result name="get">-->
+
+        <!--</result>-->
+        <!--</action>-->
+        <action name="activate" class="com.mlj.dangdang.action.UserAction" method="activate">
+            <result name="success">
+                /user/register_ok.jsp
+            </result>
+            <result name="address">
+                /user/login_ok.jsp
+            </result>
+        </action>
+        <action name="loginout" class="com.mlj.dangdang.action.UserAction" method="loginout">
+            <result name="success" type="chain">
+                newhotBook
+            </result>
+        </action>
+        <action name="newhotBook" class="com.mlj.dangdang.action.Bookaction" method="newhotBook">
+            <result name="main">
+                /main/main.jsp
+            </result>
+        </action>
+    </package>
+
+    <package name="image" extends="struts-default" namespace="/image">
+        <action name="imgCode" method="imgCode" class="com.mlj.dangdang.action.ImgcodeAction">
+            <result name="success" type="stream">
+                <param name="inputName">inputStream</param>
+            </result>
+        </action>
+        <action name="checkImg" class="com.mlj.dangdang.action.ImgcodeAction" method="checkImg">
+
+        </action>
+    </package>
+
+</struts>

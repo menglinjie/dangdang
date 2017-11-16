@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mlj.dangdang.dao.BookDao">
+    <!--&lt;!&ndash;缓存配置&ndash;&gt;-->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache">-->
+
+    <!--<property name="timeToIdleSeconds" value="3600"/>&lt;!&ndash;1 hour&ndash;&gt;-->
+
+    <!--<property name="timeToLiveSeconds" value="3600"/>&lt;!&ndash;1 hour&ndash;&gt;-->
+
+    <!--<property name="maxEntriesLocalHeap" value="1000"/>-->
+
+    <!--<property name="maxEntriesLocalDisk" value="10000000"/>-->
+
+    <!--<property name="memoryStoreEvictionPolicy" value="LRU"/>-->
+
+    <!--</cache>-->
+
+    <resultMap id="bookmap" type="Book">
+        <id column="id" property="id"></id>
+        <result property="bname" column="bname"></result>
+        <result property="author" column="author"></result>
+        <result property="publisher" column="publisher"></result>
+        <result property="publishTime" column="publish_time"></result>
+        <result property="brief" column="brief"></result>
+        <result property="price" column="price"></result>
+        <result property="ddprice" column="ddprice"></result>
+        <result property="img" column="img"></result>
+    </resultMap>
+
+    <select id="selectByparam" resultMap="bookmap" parameterType="int">
+        SELECT *
+        FROM dbook WHERE 1=1
+        <if test="param==1">
+            AND recommend = 1 ORDER BY publish_time DESC;
+        </if>
+        <if test="param==2">
+            ORDER BY sales DESC LIMIT 8;
+        </if>
+        <if test="param==3">
+            ORDER BY publish_time DESC LIMIT 8;
+        </if>
+        <if test="param==4">
+            ORDER BY publish_time,sales DESC LIMIT 8;
+        </if>
+    </select>
+</mapper>

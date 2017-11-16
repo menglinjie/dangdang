@@ -8,7 +8,7 @@
     <link href="../css/page_bottom.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../js/jquery-3.0.0.min.js"></script>
     <script type="text/javascript" src="../js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../js/user.js"></script>
+    <script type="text/javascript" src="../js/rejister.js"></script>
     <script type="text/javascript" src="../js/jquerySession.js"></script>
 </head>
 <body>
@@ -40,7 +40,7 @@
                 <a href="#">我的当当</a>”查看并管理您的个人信息
             </li>
             <li>
-                <a href="../main/main.jsp">浏览并选购商品</a>
+                <a href="${pageContext.request.contextPath}/user/newhotBook.action">浏览并选购商品</a>
             </li>
         </ul>
     </div>

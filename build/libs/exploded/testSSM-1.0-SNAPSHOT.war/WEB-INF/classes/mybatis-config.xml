@@ -4,9 +4,14 @@
 <configuration>
 
     <!--配置别名-->
+    <!--<typeAliases>-->
+    <!--<typeAlias type="com.mlj.dangdang.model.User" alias="User"></typeAlias>-->
+    <!--</typeAliases>-->
     <typeAliases>
-        <typeAlias type="com.mlj.dangdang.model.User" alias="User"></typeAlias>
+        <package name="com.mlj.dangdang.model"></package>
     </typeAliases>
 
-
+    <mappers>
+        <package name="com.mlj.dangdang.dao"></package>
+    </mappers>
 </configuration>

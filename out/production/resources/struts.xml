@@ -1,54 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
         "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <constant name="struts.devMode" value="true"/>
-    <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
-
-    <package name="user" extends="struts-default" namespace="/user">
-        <action name="rejister" class="com.mlj.dangdang.action.UserAction" method="rejister">
-            <result name="rejister">
-                /user/verify_form.jsp
-            </result>
-        </action>
-        <action name="login" class="com.mlj.dangdang.action.UserAction" method="login">
-            <result name="addAddress">
-                /main/book_list.jsp
-            </result>
-            <result name="main">
-                /main/book_list.jsp
-            </result>
-            <result name="error">
-                login.jsp
-            </result>
-        </action>
-        <action name="checkEmail" class="com.mlj.dangdang.action.UserAction" method="checkEmail">
-
-        </action>
-        <!--<action name="get" class="com.mlj.dangdang.action.UserAction" method="get">-->
-            <!--<result name="get">-->
-
-            <!--</result>-->
-        <!--</action>-->
-        <action name="activate" class="com.mlj.dangdang.action.UserAction" method="activate">
-            <result name="success">
-                /user/register_ok.jsp
-            </result>
-        </action>
-    </package>
-
-    <package name="image" extends="struts-default" namespace="/image">
-        <action name="imgCode" method="imgCode" class="com.mlj.dangdang.action.ImgcodeAction">
-            <result name="success" type="stream">
-                <param name="inputName">inputStream</param>
-            </result>
-        </action>
-        <action name="checkImg" class="com.mlj.dangdang.action.ImgcodeAction" method="checkImg">
-
-        </action>
-    </package>
-
+    <include file="strus2XML/usersstruts.xml"></include>
+    <include file="strus2XML/imgstruts.xml"></include>
+    <include file="strus2XML/categorystruts.xml"></include>
+    <include file="strus2XML/bookstruts.xml"></include>
 </struts>

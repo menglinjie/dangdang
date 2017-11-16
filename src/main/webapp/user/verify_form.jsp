@@ -7,7 +7,7 @@
     <link href="../css/page_bottom.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../js/jquery-3.0.0.min.js"></script>
     <script type="text/javascript" src="../js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../js/user.js"></script>
+    <script type="text/javascript" src="../js/rejister.js"></script>
     <script type="text/javascript" src="../js/jquerySession.js"></script>
 </head>
 <body>

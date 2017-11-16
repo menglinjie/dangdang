@@ -7,7 +7,7 @@ public class Category {
     private int id;
     private String cname;
     private int count;//类别数量
-    private Category category;//父类类别
+    private List<Category> categoryList;//子类类别集合
 
     private List<Book> bookList;//类别下的图书集合
 
@@ -43,11 +43,11 @@ public class Category {
         this.cname = cname;
     }
 
-    public Category getCategory() {
-        return category;
+    public List<Category> getCategoryList() {
+        return categoryList;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
     }
 }
