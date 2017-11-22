@@ -34,6 +34,7 @@
                 <form method="post" action="/user/login.action" id="ctl00">
                     <ul>
                         <li>
+                            <s:token></s:token>
                             <span>请输入Email地址：</span>
                             <input type="text" name="email" id="txtUsername" class="textbox"/>
                         </li>

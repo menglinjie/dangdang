@@ -12,13 +12,17 @@
             <div class="bg_old" onmouseover="this.className = 'bg_white';"
                  onmouseout="this.className = 'bg_old';">
                 <h3>
-                    [<a href='#'><s:property value="#category.cname"></s:property></a>]
+                    [<a href='/category/bookList.action?categoryId=<s:property value="#category.id"></s:property>
+                    &isPa=0&orderBy=1&pageNow=1&childrenId=<s:property value="#category.id" />'>
+                    <s:property value="#category.cname"></s:property></a>]
                 </h3>
                 <ul class="ul_left_list">
                     <s:iterator value="#category.categoryList" var="childCategory">
                         <!--2级分类开始-->
                         <li>
-                            <a href='book_list.jsp'><s:property value="#childCategory.cname"></s:property> </a>
+                            <a href='/category/bookList.action?categoryId=<s:property value="#category.id"></s:property>
+                    &isPa=1&orderBy=1&pageNow=1&childrenId=<s:property value="#childCategory.id" />'>
+                                <s:property value="#childCategory.cname"></s:property> </a>
                         </li>
                         <!--2级分类结束-->
                     </s:iterator>

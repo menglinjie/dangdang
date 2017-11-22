@@ -16,26 +16,6 @@
 
     <!--</cache>-->
 
-    <!--<resultMap id="categoryMap2" type="Category">-->
-    <!--<id property="id" column="id"></id>-->
-    <!--<result property="cname" column="cname"></result>-->
-    <!--<result property="count" column="count"></result>-->
-    <!--<collection property="categoryList" ofType="Category">-->
-    <!--<id property="id" column="id"></id>-->
-    <!--<result property="cname" column="cname"></result>-->
-    <!--<result property="count" column="count"></result>-->
-    <!--</collection>-->
-    <!--<collection property="bookList" ofType="Category">-->
-    <!--<id property="id" column="id"></id>-->
-    <!--<result property="bname" column="bname"></result>-->
-    <!--<result property="author" column="author"></result>-->
-    <!--<result property="publisher" column="publisher"></result>-->
-    <!--<result property="publishTime" column="publish_time"></result>-->
-    <!--<result property="brief" column="brief"></result>-->
-    <!--<result property="price" column="price"></result>-->
-    <!--<result property="ddprice" column="ddprice"></result>-->
-    <!--</collection>-->
-    <!--</resultMap>-->
 
     <resultMap id="categoryMap1" type="Category">
         <id property="id" column="id"></id>
@@ -66,4 +46,85 @@
         </choose>
     </select>
 
+    <!--递归查询类别下的所有子类别及图书（递归）-->
+    <!--<resultMap id="categoryMap2" type="Category">-->
+    <!--<id property="id" column="id"></id>-->
+    <!--<result property="cname" column="cname"></result>-->
+    <!--<result property="count" column="count"></result>-->
+    <!--<collection property="bookList" ofType="Book">-->
+    <!--<id property="bookid" column="b_id"></id>-->
+    <!--<result property="bname" column="bname"></result>-->
+    <!--<result property="author" column="author"></result>-->
+    <!--<result property="publisher" column="publisher"></result>-->
+    <!--<result property="publishTime" column="publish_time"></result>-->
+    <!--<result property="brief" column="brief"></result>-->
+    <!--<result property="price" column="price"></result>-->
+    <!--<result property="ddprice" column="ddprice"></result>-->
+    <!--</collection>-->
+    <!--<collection property="categoryList" ofType="Category" javaType="java.util.List" column="id" select="getById1"/>-->
+
+    <!--</resultMap>-->
+
+    <!--&lt;!&ndash;根据父类id查找其子类别&ndash;&gt;-->
+    <!--<select id="getById1" resultMap="categoryMap2" parameterType="int">-->
+    <!--SELECT *-->
+    <!--FROM dcategory c, dbook b-->
+    <!--WHERE c.id = b.category_id AND c.parent_id = #{id}-->
+    <!--</select>-->
+
+    <!--&lt;!&ndash;查看类别下的图书和类别&ndash;&gt;-->
+    <!--<select id="getBooks" resultMap="categoryMap2">-->
+    <!--SELECT *-->
+    <!--FROM dcategory c, dbook b-->
+    <!--WHERE b.category_id = c.id AND c.id = #{categoryId}-->
+    <!--</select>-->
+
+    <!--查询类别下的图书-->
+    <resultMap id="categoryMap3" type="Category">
+        <collection property="bookList" ofType="Book">
+            <id property="bookid" column="b_id"></id>
+            <result property="bname" column="bname"></result>
+            <result property="author" column="author"></result>
+            <result property="publisher" column="publisher"></result>
+            <result property="publishTime" column="publish_time"></result>
+            <result property="brief" column="brief"></result>
+            <result property="price" column="price"></result>
+            <result property="ddprice" column="ddprice"></result>
+            <result property="img" column="img"></result>
+        </collection>
+    </resultMap>
+
+    <select id="books" resultMap="categoryMap3">
+        SELECT *
+        FROM dcategory c, dbook b
+        WHERE c.id = b.category_id
+        <if test="isPa==0">
+            AND c.parent_id = #{categoryId}
+        </if>
+        <if test="isPa==1">
+            AND c.id = #{categoryId}
+        </if>
+        <if test="orderBy==1">
+            ORDER BY b.publish_time DESC
+        </if>
+        <if test="orderBy==2">
+            ORDER BY b.sales DESC
+        </if>
+        <if test="orderBy==3">
+            ORDER BY b.ddprice DESC
+        </if>
+        LIMIT #{startPos},4
+    </select>
+
+    <select id="count" resultType="int">
+        SELECT count(*)
+        FROM dcategory c, dbook b
+        WHERE c.id = b.category_id
+        <if test="isPa==0">
+            AND c.parent_id = #{categoryId}
+        </if>
+        <if test="isPa==1">
+            AND c.id = #{categoryId}
+        </if>
+    </select>
 </mapper>

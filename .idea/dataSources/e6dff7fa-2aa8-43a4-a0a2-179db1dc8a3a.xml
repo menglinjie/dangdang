@@ -74,7 +74,7 @@
       <RefTableName>duser</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="27" parent="11" name="id">
+    <column id="27" parent="11" name="b_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
@@ -190,7 +190,7 @@
     </index>
     <key id="52" parent="11" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
+      <ColNames>b_id</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="53" parent="11" name="dbook_ibfk_1">
@@ -334,7 +334,7 @@
       <ColNames>book_id</ColNames>
       <RefSchemaName>dangdang</RefSchemaName>
       <RefTableName>dbook</RefTableName>
-      <RefColNames>id</RefColNames>
+      <RefColNames>b_id</RefColNames>
     </foreign-key>
     <foreign-key id="82" parent="14" name="dorderbook_dorder_id_fk">
       <ColNames>order_id</ColNames>

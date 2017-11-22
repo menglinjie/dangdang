@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Book {
 
-    private int id;
+    private int bookid;
     private String bname;
     private String author;
     private String publisher;//出版社
@@ -55,12 +55,12 @@ public class Book {
         this.category = category;
     }
 
-    public int getId() {
-        return id;
+    public int getBookid() {
+        return bookid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBookid(int bookid) {
+        this.bookid = bookid;
     }
 
     public String getBname() {
@@ -218,7 +218,7 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "id=" + id +
+                "bookid=" + bookid +
                 ", bname='" + bname + '\'' +
                 ", author='" + author + '\'' +
                 ", publisher='" + publisher + '\'' +
@@ -226,19 +226,7 @@ public class Book {
                 ", price=" + price +
                 ", ddprice=" + ddprice +
                 ", brief='" + brief + '\'' +
-                ", edition=" + edition +
                 ", printTime=" + printTime +
-                ", print=" + print +
-                ", ISBN='" + ISBN + '\'' +
-                ", words=" + words +
-                ", pages=" + pages +
-                ", format='" + format + '\'' +
-                ", paper=" + paper +
-                ", packa='" + packa + '\'' +
-                ", recommend=" + recommend +
-                ", authorBrief='" + authorBrief + '\'' +
-                ", comment='" + comment + '\'' +
-                ", sales=" + sales +
                 ", category=" + category +
                 '}';
     }

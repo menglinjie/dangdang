@@ -9,6 +9,21 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
 
     <package name="user" extends="struts-default" namespace="/user">
+
+        <!--自定义拦截器-->
+        <interceptors>
+            <interceptor-stack name="my">
+                <interceptor-ref name="token"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <!--全局返回-->
+        <global-results>
+            <result name="invalid.token">
+                /err/error.jsp
+            </result>
+        </global-results>
+
         <action name="rejister" class="com.mlj.dangdang.action.UserAction" method="rejister">
             <result name="rejister">
                 /user/verify_form.jsp

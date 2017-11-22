@@ -11,6 +11,7 @@ public class Category {
 
     private List<Book> bookList;//类别下的图书集合
 
+
     public int getCount() {
         return count;
     }
@@ -49,5 +50,16 @@ public class Category {
 
     public void setCategoryList(List<Category> categoryList) {
         this.categoryList = categoryList;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", cname='" + cname + '\'' +
+                ", count=" + count +
+                ", categoryList=" + categoryList +
+                ", bookList=" + bookList +
+                '}';
     }
 }
