@@ -1,18 +1,19 @@
 package com.mlj.dangdang.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Cart {
+    //存放数据的Map
+    private Map<Integer, CartItem> map = new HashMap<Integer, CartItem>();
+    //总价
+    private double totalprice;
 
-    private Map<Integer, ShopingItem> map;
-    private double totalprice;//总价(根据key取出map价格相加)
-    private double jiesheng;//节省（总价-根据key取出map dd价格相加）
-
-    public Map<Integer, ShopingItem> getMap() {
+    public Map<Integer, CartItem> getMap() {
         return map;
     }
 
-    public void setMap(Map<Integer, ShopingItem> map) {
+    public void setMap(Map<Integer, CartItem> map) {
         this.map = map;
     }
 
@@ -24,11 +25,21 @@ public class Cart {
         this.totalprice = totalprice;
     }
 
-    public double getJiesheng() {
-        return jiesheng;
+    public Cart(Map<Integer, CartItem> map, double totalprice) {
+        super();
+        this.map = map;
+        this.totalprice = totalprice;
     }
 
-    public void setJiesheng(double jiesheng) {
-        this.jiesheng = jiesheng;
+    public Cart() {
+        super();
+        // TODO Auto-generated constructor stub
     }
+
+    @Override
+    public String toString() {
+        return "Cart [map=" + map + ", totalprice=" + totalprice + "]";
+    }
+
+
 }

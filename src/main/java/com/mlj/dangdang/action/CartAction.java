@@ -1,12 +1,23 @@
 package com.mlj.dangdang.action;
 
+import com.mlj.dangdang.model.Cart;
+import com.mlj.dangdang.service.CartService;
+import com.mlj.dangdang.util.Struts2ScopeUtil;
 import com.opensymphony.xwork2.ActionSupport;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class CartAction extends ActionSupport {
 
-    private int bookId;
-    private int count;
-    private int status;
+    private int bookId;//图书id
+    private int amount;//数量
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public int getBookId() {
         return bookId;
@@ -16,48 +27,40 @@ public class CartAction extends ActionSupport {
         this.bookId = bookId;
     }
 
-    public int getCount() {
-        return count;
-    }
+    @Autowired
+    private CartService addcartService;
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    /**
-     * 查看购物车（查看商品，查看总价，查看数量，查看节省金额）
-     *
-     * @return
-     */
-    public String showCart() {
-        return null;
-    }
-
-    /**
-     * 添加商品到购物车
-     *
-     * @return
-     */
     public String addCart() {
-        return null;
+
+        //获取旧的购物车
+        Cart oldCart = (Cart) Struts2ScopeUtil.getSessionAttribute("cart");
+        if (oldCart == null) {//旧的购物车不存在，创建一个
+            oldCart = new Cart();
+        }
+        Cart newCart = addcartService.add(bookId, oldCart);//添加购物车，返回一个新购物车
+        System.out.println(newCart.getMap().get(bookId).getBook());
+        Struts2ScopeUtil.setSessionAttribute("cart", newCart);//将新购物车放入session,覆盖旧的购物车
+        return "cart";
     }
 
-    /**
-     * 修改购物车商品（变更后要重新计算价格，修改对应的商品数量）
-     * status 0 :删除 1：恢复
-     *
-     * @return
-     */
-    public String modify(int count, int status) {
-        return null;
+    public String update() {
+        Cart oldCart = (Cart) Struts2ScopeUtil.getSessionAttribute("cart");
+        addcartService.update(bookId, oldCart, amount);
+        Struts2ScopeUtil.setSessionAttribute("cart", oldCart);//将新购物车放入session,覆盖旧的购物车
+        return "cart";
     }
 
+    public String delete() {
+        Cart oldCart = (Cart) Struts2ScopeUtil.getSessionAttribute("cart");
+        addcartService.delete(bookId, oldCart);
+        Struts2ScopeUtil.setSessionAttribute("cart", oldCart);//将新购物车放入session,覆盖旧的购物车
+        //获取旧的2购物车
+        Cart oldCart2 = (Cart) Struts2ScopeUtil.getSessionAttribute("cart2");
+        if (oldCart2 == null) {//旧的购物车不存在，创建一个
+            oldCart2 = new Cart();
+        }
+        Cart newCart2 = addcartService.add(bookId, oldCart2);
+        Struts2ScopeUtil.setSessionAttribute("cart2", newCart2);//将新购物车放入session,覆盖旧的购物车
+        return "cart";
+    }
 }

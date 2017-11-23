@@ -100,7 +100,7 @@ public class TestCategoryDao {
 
     @Test
     public void testGetBooksSrevice() {
-        Page<Category> categoryPage = categoryService.getBooks(1, 0, 1, 1);
+        Page<Category> categoryPage = categoryService.getBooks(0, 2, 0, 1);
         System.out.println(categoryPage.getTotalPageCount() + "========总页数");
         System.out.println(
                 "=======是否有下一页" + categoryPage.isHasNext() + "=====是否有上一页" + categoryPage.isHasPre());

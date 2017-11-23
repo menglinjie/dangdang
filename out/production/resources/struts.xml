@@ -8,4 +8,5 @@
     <include file="strus2XML/imgstruts.xml"></include>
     <include file="strus2XML/categorystruts.xml"></include>
     <include file="strus2XML/bookstruts.xml"></include>
+    <include file="strus2XML/cartstruts.xml"></include>
 </struts>

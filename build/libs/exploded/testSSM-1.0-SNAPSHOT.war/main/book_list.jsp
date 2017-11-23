@@ -1,4 +1,5 @@
 <%@page contentType="text/html;charset=utf-8" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,6 +10,16 @@
     <link href="../css/second.css" rel="stylesheet" type="text/css"/>
     <link href="../css/secBook_Show.css" rel="stylesheet" type="text/css"/>
     <link href="../css/list.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../js/jquery-3.0.0.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../js/rejister.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function pageChange() {
+
+            }
+        })
+    </script>
 </head>
 <body>
 &nbsp;
@@ -95,44 +106,58 @@
                 <div class="list_r_title_text">
                     排序方式
                 </div>
-                <select onchange='' name='select_order' size='1'
-                        class='list_r_title_ml'>
-                    <option value="">
+                <select name='select_order' size='1'
+                        class='list_r_title_ml'
+                        onchange="">
+                    <option value="1">
                         按上架时间 降序
+                    </option>
+                    <option value="2">
+                        按销量排序 降序
+                    </option>
+                    <option value="3">
+                        按价格排序 降序
                     </option>
                 </select>
                 <div id="divTopPageNavi" class="list_r_title_text3">
 
                     <!--分页导航开始-->
-
-                    <div class='list_r_title_text3a'>
-                        <a name=link_page_next
-                           href="/category/bookList.action?categoryId=<s:property value="categoryId"></s:property>
+                    <s:if test="categoryPage.hasPre">
+                        <div class='list_r_title_text3a'>
+                            <a name=link_page_next
+                               href="/category/bookList.action?categoryId=<s:property value="categoryId"></s:property>
                     &isPa=<s:property value="isPa"></s:property>&orderBy=<s:property value="orderBy"></s:property>
-                    &pageNow=<s:property value="pageNow"></s:property>-1&childrenId=<s:property value="childrenId" />">
-                            <img src='../images/page_up.gif'/> </a>
-                    </div>
+                    &pageNow=<s:property value="pageNow-1"></s:property>&childrenId=<s:property value="childrenId" />">
+                                <img src='../images/page_up.gif'/> </a>
+                        </div>
+                    </s:if>
+                    <s:else>
+                        <div class='list_r_title_text3a'>
+                            <img src='../images/page_up_gray.gif'/>
+                        </div>
+                    </s:else>
 
-                    <div class='list_r_title_text3a'>
-                        <img src='../images/page_up_gray.gif'/>
-                    </div>
 
                     <div class='list_r_title_text3b'>
                         第<s:property value="categoryPage.pageNow"></s:property> 页/共<s:property
                             value="categoryPage.totalPageCount"></s:property>页
                     </div>
 
-                    <div class='list_r_title_text3a'>
-                        <a name=link_page_next
-                           href="/category/bookList.action?categoryId=<s:property value="categoryId"></s:property>
+                    <s:if test="categoryPage.hasNext">
+                        <div class='list_r_title_text3a'>
+                            <a name=link_page_next
+                               href="/category/bookList.action?categoryId=<s:property value="categoryId"></s:property>
                     &isPa=<s:property value="isPa"></s:property>&orderBy=<s:property value="orderBy"></s:property>
-                    &pageNow=<s:property value="pageNow"></s:property>+1&childrenId=<s:property value="childrenId" />">
-                            <img src='../images/page_down.gif'/> </a>
-                    </div>
+                    &pageNow=<s:property value="pageNow+1"></s:property>&childrenId=<s:property value="childrenId" />">
+                                <img src='../images/page_down.gif'/> </a>
+                        </div>
+                    </s:if>
+                    <s:else>
+                        <div class='list_r_title_text3a'>
+                            <img src='../images/page_down_gray.gif'/>
+                        </div>
+                    </s:else>
 
-                    <div class='list_r_title_text3a'>
-                        <img src='../images/page_down_gray.gif'/>
-                    </div>
 
                     <!--分页导航结束-->
                 </div>
@@ -145,10 +170,12 @@
                     <div class="clear"></div>
 
                     <div class="list_r_list">
-							<span class="list_r_list_book"><a name="link_prd_img" href='#'>
+							<span class="list_r_list_book"><a name="link_prd_img" href='/book/showBook.action?bookId=
+                                <s:property value="#book.bookid" />'>
 								<img src="<s:property value="#book.img" /> "/> </a> </span>
                         <h2>
-                            <a name="link_prd_name" href='#'><s:property value="#book.bname"/></a>
+                            <a name="link_prd_name" href='/book/showBook.action?bookId=
+                                <s:property value="#book.bookid" />'><s:property value="#book.bname"/></a>
                         </h2>
                             <%--<h3>--%>
                             <%--顾客评分：100--%>
@@ -174,53 +201,13 @@
                             节省：<s:property value="#book.price-#book.ddprice"/>
                         </h6>
                         <span class="list_r_list_button">
-							<a href="#">
+							<a href="/cart/addCart.action?bookId=<s:property value="#book.bookid"/>">
 							<img src='../images/buttom_goumai.gif'/> </a>
 							<span id="cartinfo"></span>
                 </span>
                     </div>
                 </s:iterator>
             </s:iterator>
-
-            <%--<div class="clear"></div>--%>
-
-            <%--<div class="clear"></div>--%>
-            <%--<div class="list_r_list">--%>
-            <%--<span class="list_r_list_book"><a name="link_prd_img" href='#'>--%>
-            <%--<img src="../productImages/1.jpg"/> </a> </span>--%>
-            <%--<h2>--%>
-            <%--<a name="link_prd_name" href='#'>精通JavaEE轻量级框架整合方案</a>--%>
-            <%--</h2>--%>
-            <%--<h3>--%>
-            <%--顾客评分：100--%>
-            <%--</h3>--%>
-            <%--<h4 class="list_r_list_h4">--%>
-            <%--作 者:--%>
-            <%--<a href='#' name='作者'>菜鸟</a>--%>
-            <%--</h4>--%>
-            <%--<h4>--%>
-            <%--出版社：--%>
-            <%--<a href='#' name='出版社'>人民邮电出版社</a>--%>
-            <%--</h4>--%>
-            <%--<h4>--%>
-            <%--出版时间：2009-01-01--%>
-            <%--</h4>--%>
-            <%--<h5>--%>
-            <%--这是一本好书，描述了Struts、Hibernate和Spring等框架的整合应用！--%>
-            <%--</h5>--%>
-            <%--<div class="clear"></div>--%>
-            <%--<h6>--%>
-            <%--<span class="del">￥79</span>--%>
-            <%--<span class="red">￥60</span>--%>
-            <%--节省：￥19--%>
-            <%--</h6>--%>
-            <%--<span class="list_r_list_button">--%>
-            <%--<a href="#"> --%>
-            <%--<img src='../images/buttom_goumai.gif'/> </a>--%>
-            <%--<span id="cartinfo3"></span>--%>
-            <%--</span>--%>
-            <%--</div>--%>
-
             <!--商品条目结束-->
 
             <div class="clear"></div>

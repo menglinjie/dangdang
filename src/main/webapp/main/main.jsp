@@ -67,7 +67,10 @@
                 </h2>
                 <div id="NewProduct_1_o_t" onmouseover="">
                     <s:iterator value="newhotbooks" var="nhb">
-                        <s:property value="#nhb.bname"></s:property><br/>
+                        <a href="/book/showBook.action?bookId=
+                                <s:property value="#nhb.bookid" />">
+                            <s:property value="#nhb.bname"></s:property><br/>
+                        </a>
                     </s:iterator>
                     <h3 class="second">
                         <span class="dot_r"> </span><a href="#" target="_blank">更多&gt;&gt;</a>

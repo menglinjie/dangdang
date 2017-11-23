@@ -17,7 +17,7 @@
     <!--</cache>-->
 
     <resultMap id="bookmap" type="Book">
-        <id column="id" property="id"></id>
+        <id column="b_id" property="bookid"></id>
         <result property="bname" column="bname"></result>
         <result property="author" column="author"></result>
         <result property="publisher" column="publisher"></result>
@@ -32,7 +32,7 @@
         SELECT *
         FROM dbook WHERE 1=1
         <if test="param==1">
-            AND recommend = 1 ORDER BY publish_time DESC;
+            AND recommend = 1 ORDER BY publish_time DESC LIMIT 2;
         </if>
         <if test="param==2">
             ORDER BY sales DESC LIMIT 8;
@@ -43,5 +43,35 @@
         <if test="param==4">
             ORDER BY publish_time,sales DESC LIMIT 8;
         </if>
+    </select>
+
+    <resultMap id="book1" type="Book">
+        <id column="b_id" property="bookid"></id>
+        <result property="bname" column="bname"></result>
+        <result property="author" column="author"></result>
+        <result property="publisher" column="publisher"></result>
+        <result property="publishTime" column="publish_time"></result>
+        <result property="brief" column="brief"></result>
+        <result property="price" column="price"></result>
+        <result property="ddprice" column="ddprice"></result>
+        <result property="img" column="img"></result>
+        <result property="edition" column="edition"></result>
+        <result property="printTime" column="print_time"></result>
+        <result property="print" column="print"></result>
+        <result property="ISBN" column="ISBN"></result>
+        <result property="words" column="words"></result>
+        <result property="pages" column="pages"></result>
+        <result property="format" column="format"></result>
+        <result property="paper" column="paper"></result>
+        <result property="packa" column="packa"></result>
+        <result property="authorBrief" column="author_brief"></result>
+        <result property="comment" column="comment"></result>
+        <result property="sales" column="sales"></result>
+    </resultMap>
+
+    <select id="select" resultMap="book1">
+        SELECT *
+        FROM dbook
+        WHERE b_id = #{bookId}
     </select>
 </mapper>

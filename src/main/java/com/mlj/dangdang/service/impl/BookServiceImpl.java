@@ -23,5 +23,10 @@ public class BookServiceImpl implements BookService {
         return bookDao.selectByparam(param);
     }
 
+    @Override
+    public Book get(int bookId) {
+        return bookDao.select(bookId);
+    }
+
 
 }

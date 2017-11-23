@@ -16,5 +16,5 @@ public interface BookDao {
 
 
     //根据id查找单个图书
-    public Book select(int bookId);
+    public Book select(@Param("bookId") int bookId);
 }

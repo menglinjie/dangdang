@@ -16,6 +16,15 @@ public class Bookaction extends ActionSupport {
     private List<Book> hotbooks;
     private List<Book> newbooks;
     private List<Book> newhotbooks;
+    private Book book;
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
 
     public List<Book> getRecommendbooks() {
         return recommendbooks;
@@ -119,12 +128,11 @@ public class Bookaction extends ActionSupport {
     }
 
     /**
-     * 查看单个图书
-     *
      * @return
      */
     public String showBook() {
-        return null;
+        book = bookService.get(bookId);
+        return "book";
     }
 
 }

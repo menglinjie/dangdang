@@ -226,7 +226,20 @@ public class Book {
                 ", price=" + price +
                 ", ddprice=" + ddprice +
                 ", brief='" + brief + '\'' +
+                ", edition=" + edition +
                 ", printTime=" + printTime +
+                ", print=" + print +
+                ", ISBN='" + ISBN + '\'' +
+                ", words=" + words +
+                ", pages=" + pages +
+                ", format='" + format + '\'' +
+                ", paper=" + paper +
+                ", packa='" + packa + '\'' +
+                ", recommend=" + recommend +
+                ", authorBrief='" + authorBrief + '\'' +
+                ", comment='" + comment + '\'' +
+                ", sales=" + sales +
+                ", img='" + img + '\'' +
                 ", category=" + category +
                 '}';
     }

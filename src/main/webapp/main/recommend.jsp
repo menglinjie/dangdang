@@ -8,12 +8,14 @@
         <s:iterator value="recommendbooks" var="rb">
             <div class=second_c_02_b1>
                 <div class=second_c_02_b1_1>
-                    <a href='#' target='_blank'><img src="<s:property value="#rb.img" />" width=70 border=0/> </a>
+                    <a href='/book/showBook.action?bookId=
+                                <s:property value="#rb.bookid" />' target='_blank'><img src="<s:property value="#rb.img" />" width=70 border=0/> </a>
                 </div>
 
                 <div class=second_c_02_b1_2>
                     <h3>
-                        <a href='#' target='_blank' title='输赢'><s:property value="#rb.bname"></s:property> </a>
+                        <a href='/book/showBook.action?bookId=
+                                <s:property value="#rb.bookid" />' target='_blank' title='输赢'><s:property value="#rb.bname"></s:property> </a>
                     </h3>
                     <h4>
                         作者：<s:property value="#rb.author"></s:property> 著

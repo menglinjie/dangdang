@@ -24,7 +24,11 @@
                 /main/new.jsp
             </result>
         </action>
-
+        <action name="showBook" class="com.mlj.dangdang.action.Bookaction" method="showBook">
+            <result name="book">
+                /main/product.jsp
+            </result>
+        </action>
     </package>
 
 </struts>

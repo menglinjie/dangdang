@@ -9,11 +9,13 @@
     <s:iterator value="hotbooks" var="hb">
         <div class="second_d_wai">
             <div class="img">
-                <a href="#" target='_blank'><img
+                <a href="/book/showBook.action?bookId=
+                                <s:property value="#hb.bookid" />" target='_blank'><img
                         src="<s:property value="#hb.img" />" border=0/> </a>
             </div>
             <div class="shuming">
-                <a href="#" target="_blank"><s:property value="#hb.bname"></s:property></a><a href="#"
+                <a href="/book/showBook.action?bookId=
+                                <s:property value="#hb.bookid" />" target="_blank"><s:property value="#hb.bname"></s:property></a><a href="#"
                                                                                               target="_blank"></a>
             </div>
             <div class="price">

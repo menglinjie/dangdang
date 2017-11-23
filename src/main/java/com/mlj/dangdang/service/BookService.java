@@ -14,5 +14,11 @@ public interface BookService {
      */
     public List<Book> bookList(int param);
 
-
+    /**
+     * 查找单个图书
+     *
+     * @param bookId
+     * @return
+     */
+    public Book get(int bookId);
 }

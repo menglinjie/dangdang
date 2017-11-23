@@ -28,4 +28,8 @@ public class TestBookDao {
         }
     }
 
+    @Test
+    public void testSelect(){
+        System.out.println(bookDao.select(4));
+    }
 }
