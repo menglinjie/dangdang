@@ -1,13 +1,15 @@
 package com.mlj.dangdang.model;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable{
 
     private int id;
     private String uname;
     private String address;
-    private int code;//邮政编码
-    private int phone;
-    private int mobile;
+    private int code1;//邮政编码
+    private String phone;
+    private String mobile;
     private int isDefault = 0;//是否默认1：是 0：不是
 
     private User user;//用户
@@ -44,27 +46,27 @@ public class Address {
         this.address = address;
     }
 
-    public int getCode() {
-        return code;
+    public int getCode1() {
+        return code1;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setCode1(int code1) {
+        this.code1 = code1;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public int getMobile() {
+    public String getMobile() {
         return mobile;
     }
 
-    public void setMobile(int mobile) {
+    public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 
@@ -74,5 +76,19 @@ public class Address {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", uname='" + uname + '\'' +
+                ", address='" + address + '\'' +
+                ", code1=" + code1 +
+                ", phone='" + phone + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", isDefault=" + isDefault +
+                ", user=" + user +
+                '}';
     }
 }

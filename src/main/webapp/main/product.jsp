@@ -62,29 +62,30 @@
                     <DIV id=author_>作　　者： <s:property value="book.author"></s:property></DIV>
                     <DIV id=publisher_>出 版 社： <s:property value="book.publisher"></s:property></DIV>
                     <UL>
-                        <LI>出版时间： <s:property value="book.publisher"></s:property> </LI>
-                        <LI>字　　数： <s:property value="book.publishTime"></s:property> </LI>
-                        <LI>版　　次： <s:property value="book.edition"></s:property> </LI>
-                        <LI>页　　数： <s:property value="book.pages"></s:property> </LI>
-                        <LI>印刷时间： <s:property value="book.printTime"></s:property> </LI>
+                        <LI>出版时间： <s:property value="book.publisher"></s:property></LI>
+                        <LI>字　　数： <s:property value="book.publishTime"></s:property></LI>
+                        <LI>版　　次： <s:property value="book.edition"></s:property></LI>
+                        <LI>页　　数： <s:property value="book.pages"></s:property></LI>
+                        <LI>印刷时间： <s:property value="book.printTime"></s:property></LI>
                         <LI>开　　本： <s:property value="book.packa"></s:property>开</LI>
-                        <LI>印　　次： <s:property value="book.print"></s:property> </LI>
+                        <LI>印　　次： <s:property value="book.print"></s:property></LI>
                         <LI>纸　　张： <s:property value="book.paper"></s:property></LI>
-                        <LI>I S B N ： <s:property value="book.ISBN"></s:property> </LI>
+                        <LI>I S B N ： <s:property value="book.ISBN"></s:property></LI>
                         <LI>包　　装： 平装</LI>
                     </UL>
                     <%--<DIV id=__categroy_bk>所属分类： <A class=blue12a--%>
-                                                   <%--href="http://product.dangdang.com/category.ashx?code=01.00.00.00.00.00"--%>
-                                                   <%--target=_blank>图书</A> &gt;&gt; <A class=blue12a--%>
-                                                                                    <%--href="http://product.dangdang.com/category.ashx?code=01.30.00.00.00.00"--%>
-                                                                                    <%--target=_blank>社会科学</A> &gt;&gt; <A--%>
-                            <%--class=blue12a--%>
-                            <%--href="http://product.dangdang.com/category.ashx?code=01.30.07.00.00.00"--%>
-                            <%--target=_blank>教育</A> &gt;&gt; <A class=blue12a--%>
-                                                             <%--href="http://product.dangdang.com/category.ashx?code=01.30.07.04.00.00"--%>
-                                                             <%--target=_blank>各级教育</A></DIV>--%>
+                    <%--href="http://product.dangdang.com/category.ashx?code1=01.00.00.00.00.00"--%>
+                    <%--target=_blank>图书</A> &gt;&gt; <A class=blue12a--%>
+                    <%--href="http://product.dangdang.com/category.ashx?code1=01.30.00.00.00.00"--%>
+                    <%--target=_blank>社会科学</A> &gt;&gt; <A--%>
+                    <%--class=blue12a--%>
+                    <%--href="http://product.dangdang.com/category.ashx?code1=01.30.07.00.00.00"--%>
+                    <%--target=_blank>教育</A> &gt;&gt; <A class=blue12a--%>
+                    <%--href="http://product.dangdang.com/category.ashx?code1=01.30.07.04.00.00"--%>
+                    <%--target=_blank>各级教育</A></DIV>--%>
                     <DIV class=jiage><SPAN class=gray87>定价：<SPAN class=del
-                                                                 id=originalPriceTag>￥<s:property value="book.price"></s:property></SPAN></SPAN>
+                                                                 id=originalPriceTag>￥<s:property
+                            value="book.price"></s:property></SPAN></SPAN>
                         <SPAN
                                 class=redc30>当当价：￥<B><s:property value="book.ddprice"></s:property></B></SPAN>
                         节省：￥<s:property value="book.price-book.ddprice"></s:property>
@@ -92,9 +93,11 @@
                             <DIV class=clear></DIV>
                         </DIV>
                         <DIV class=goumai>
-                            <A title=购买 onclick="addProduct(this,${product.id})" name=purchase_book>
-                                <IMG id="buy" src="../product_files/booksale.gif"><span
-                                    id="cartInfo_${product.id}"></span></A>
+                            <span class="list_r_list_button">
+							<a href="/cart/addCart.action?bookId=<s:property value="book.bookid"/>">
+							<img src='../images/buttom_goumai.gif'/> </a>
+							<span id="cartinfo"></span>
+                            </span>
                             <!--  <A id=favor title=收藏 href="#" name=wishlist_book>
                             <IMG id=imgfavor src="../product_files/bookz_save.gif"></A>
                             -->
@@ -106,11 +109,11 @@
                 <DIV id=__zhinengbiaozhu_bk>
                     <DIV class=dashed></DIV>
                     <%--<H2 class=black14><IMG src="../product_files/bg_point1.gif" align=absMiddle>--%>
-                        <%--编辑推荐</H2>--%>
+                    <%--编辑推荐</H2>--%>
                     <%--<DIV--%>
-                            <%--class=zhengwen>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
-                        <%--在这本书里，我力图说明儿童早期教育中的某些问题，尤其要让读者认识到一个事实：我们的工作成就不仅仅是创建了一种新的教育模式。我们得出的结论已经显现于这本书名之中――发现孩子！<BR>――玛丽娅&#8226;蒙台梭利（本书作者）<BR><BR>今天，人类社会迫切需要重建教育方法；为此而奋斗，也就是为人类复兴而奋斗！<BR>　――塞吉（玛丽娅&#8226;蒙台梭利博士的老师）<BR><BR>蒙台梭利理论体系的精华是她对下面这个真理的有力论断或再论断：除非在自由的气氛中，儿童即不可能发展自己，也不可能受到有益的研究。<BR>　　--%>
-                        <%--――E&#8226;G&#8226;霍尔姆斯（哈佛大学教育学院教授）--%>
+                    <%--class=zhengwen>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--%>
+                    <%--在这本书里，我力图说明儿童早期教育中的某些问题，尤其要让读者认识到一个事实：我们的工作成就不仅仅是创建了一种新的教育模式。我们得出的结论已经显现于这本书名之中――发现孩子！<BR>――玛丽娅&#8226;蒙台梭利（本书作者）<BR><BR>今天，人类社会迫切需要重建教育方法；为此而奋斗，也就是为人类复兴而奋斗！<BR>　――塞吉（玛丽娅&#8226;蒙台梭利博士的老师）<BR><BR>蒙台梭利理论体系的精华是她对下面这个真理的有力论断或再论断：除非在自由的气氛中，儿童即不可能发展自己，也不可能受到有益的研究。<BR>　　--%>
+                    <%--――E&#8226;G&#8226;霍尔姆斯（哈佛大学教育学院教授）--%>
                     <%--</DIV>--%>
                     <DIV class=dashed></DIV>
                     <H2 class=black14><IMG src="../product_files/bg_point1.gif" align=absMiddle>
@@ -123,9 +126,9 @@
                         <s:property value="book.authorBrief"></s:property></DIV>
                     <DIV class=dashed></DIV>
                     <%--<H2 class=black14><IMG src="../product_files/bg_point1.gif" align=absMiddle>--%>
-                        <%--目录</H2>--%>
+                    <%--目录</H2>--%>
                     <%--<DIV--%>
-                            <%--class=zhengwen><s:property value="book.author"></s:property></DIV>--%>
+                    <%--class=zhengwen><s:property value="book.author"></s:property></DIV>--%>
                     <%--<DIV class=dashed></DIV>--%>
                     <H2 class=black14><IMG src="../product_files/bg_point1.gif" align=absMiddle>
                         媒体评论</H2>

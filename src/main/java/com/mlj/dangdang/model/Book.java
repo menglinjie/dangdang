@@ -1,8 +1,9 @@
 package com.mlj.dangdang.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Book {
+public class Book implements Serializable {
 
     private int bookid;
     private String bname;

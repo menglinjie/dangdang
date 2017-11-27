@@ -11,7 +11,7 @@
             <div class="img">
                 <a href="/book/showBook.action?bookId=
                                 <s:property value="#nb.bookid" />" target='_blank'><img
-                        src="<s:property value="#nb.img" />" border=0/> </a>
+                        src="<s:property value="#nb.img" />" id="img" border=0/> </a>
             </div>
             <div class="shuming">
                 <a href="/book/showBook.action?bookId=

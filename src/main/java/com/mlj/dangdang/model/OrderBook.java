@@ -1,6 +1,8 @@
 package com.mlj.dangdang.model;
 
-public class OrderBook {
+import java.io.Serializable;
+
+public class OrderBook implements Serializable {
 
     private int id;
     private int count;//商品数量

@@ -37,7 +37,7 @@ public class TestUserService {
         User user = userService.login("2411988749@qq.com");
         boolean b = MD5Util.verify("111111", user.getPassword());
         System.out.println(b);
-       // System.out.println(user.getId() + user.getName());
+       // System.out.println(user.getOrderid() + user.getName());
     }
 
     @Test

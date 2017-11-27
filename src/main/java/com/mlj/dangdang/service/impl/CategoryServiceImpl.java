@@ -8,6 +8,7 @@ import com.mlj.dangdang.service.CategoryService;
 import com.mlj.dangdang.service.UserService;
 import com.mlj.dangdang.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +19,13 @@ public class CategoryServiceImpl implements CategoryService {
     @Autowired
     private CategoryDao categoryDao;
 
+    @Cacheable(cacheNames = "categoryCache")
     @Override
     public List<Category> getAll(int categoryId) {
         return categoryDao.getAll(categoryId);
     }
 
+    @Cacheable(cacheNames = "categoryCache")
     @Override
     public Page<Category> getBooks(int categoryId,
                                    int isPa,

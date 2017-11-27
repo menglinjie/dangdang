@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mlj.dangdang.dao.AddressDao">
+
+
+    <!-- 以下两个<cache>标签二选一,第一个可以输出日志,第二个不输出日志 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+    <insert id="insert" parameterType="Address" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO daddress (uname, address, code, phone, mobile, user_id, isdefaut)
+        VALUES (#{uname}, #{address}, #{code1}, #{phone}, #{mobile}, #{user.id}, #{isDefault})
+        <!--<selectKey resultType="int" keyProperty="id" order="AFTER">-->
+        # SELECT @@IDENTITY
+        <!--</selectKey>-->
+    </insert>
+
+    <resultMap id="addressMap" type="Address">
+        <id column="id" property="id"></id>
+        <result column="uname" property="uname"></result>
+        <result column="address" property="address"></result>
+        <result column="code" property="code1"></result>
+        <result column="phone" property="phone"></result>
+        <result column="mobile" property="mobile"></result>
+        <result column="isdefaut" property="isDefault"></result>
+    </resultMap>
+    <select id="select" resultMap="addressMap">
+        SELECT *
+        FROM daddress
+        WHERE id = #{addressId}
+    </select>
+
+    <select id="selectAll" resultMap="addressMap">
+        SELECT *
+        FROM daddress a, duser u
+        WHERE a.user_id = u.id AND u.id = #{userId}
+    </select>
+
+    <update id="update" parameterType="Address">
+        UPDATE daddress
+        SET uname    = #{uname}, address = #{address}, code = #{code1}, phone = #{phone}, mobile = #{mobile},
+            isdefaut = #{isDefault}
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectDefalt" resultMap="addressMap" parameterType="int">
+        SELECT *
+        FROM daddress
+        WHERE isdefaut = 1 AND user_id = #{userId}
+    </select>
+
+</mapper>

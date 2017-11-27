@@ -1,31 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+    <diskStore path="java.io.tmpdir"/>
 
-<ehcache>
-    <!--
-           磁盘存储:将缓存中暂时不使用的对象,转移到硬盘,类似于Windows系统的虚拟内存
-            path:指定在硬盘上存储对象的路径
-     -->
-    <diskStore path="E:\ehcache"/>
     <defaultCache
-            maxElementsInMemory="1"
+            maxElementsInMemory="3000"
             eternal="false"
-            timeToIdleSeconds="20"
-            timeToLiveSeconds="20"
+            timeToIdleSeconds="3600"
+            timeToLiveSeconds="3600"
             overflowToDisk="true"
-            maxElementsOnDisk="0"
-            diskPersistent="true"
-    >
-        <bootstrapCacheLoaderFactory
-                class="net.sf.ehcache.store.DiskStoreBootstrapCacheLoaderFactory"
-                properties="bootstrapAsynchronously=true"/>
-    </defaultCache>
-    <!-- 
-        maxElementsInMemory设置成1，overflowToDisk设置成true，只要有一个缓存元素，就直接存到硬盘上去
-        eternal设置成true，代表对象永久有效
-        timeToIdleSeconds="20" 对象空闲时间，指对象在多长时间没有被访问就会失效。只对eternal为false的有效。默认值0，表示一直可以访问。
-        timeToLiveSeconds="20" 对象存活时间，指对象从创建到失效所需要的时间。只对eternal为false的有效。默认值0，表示一直可以访问。
-        maxElementsOnDisk设置成0 表示硬盘中最大缓存对象数无限大
-        diskPersistent设置成true表示缓存虚拟机重启期数据 
-      
-     -->
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="100"
+            memoryStoreEvictionPolicy="LRU"
+    />
+    <cache name="categoryCache"
+           maxElementsInMemory="3000"
+           eternal="false"
+           overflowToDisk="true"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="3600"
+           memoryStoreEvictionPolicy="LFU"
+    />
+    <cache name="addressCache"
+           maxElementsInMemory="3000"
+           eternal="false"
+           overflowToDisk="true"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="3600"
+           memoryStoreEvictionPolicy="LFU"
+    />
+    <cache name="bookCache"
+           maxElementsInMemory="3000"
+           eternal="false"
+           overflowToDisk="true"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="3600"
+           memoryStoreEvictionPolicy="LFU"
+    />
+    <cache name="userCache"
+           maxElementsInMemory="3000"
+           eternal="false"
+           overflowToDisk="true"
+           timeToIdleSeconds="3600"
+           timeToLiveSeconds="3600"
+           memoryStoreEvictionPolicy="LFU"
+    />
 </ehcache>

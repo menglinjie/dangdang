@@ -15,9 +15,13 @@
             </result>
         </action>
         <action name="update" class="com.mlj.dangdang.action.CartAction" method="update">
-            <result name="cart">
-                /cart/cart_list.jsp
-            </result>
+
+        </action>
+        <action name="recover" class="com.mlj.dangdang.action.CartAction" method="recover">
+
+        </action>
+        <action name="delete" class="com.mlj.dangdang.action.CartAction" method="delete">
+
         </action>
     </package>
 

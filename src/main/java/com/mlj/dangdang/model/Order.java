@@ -1,11 +1,14 @@
 package com.mlj.dangdang.model;
 
+import com.mlj.dangdang.util.IdWorker;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Order {
+public class Order implements Serializable {
 
-    private int id;
-    private String number = new Date().toString() + this.getId();//订单号
+    private int orderid;
+    private long number;//订单号
     private double totleprice;//总价
     private Date createTime = new Date();
     private int status = 1;//1:已支付 0：未支付
@@ -30,20 +33,25 @@ public class Order {
         this.user = user;
     }
 
-    public int getId() {
-        return id;
+    public int getOrderid() {
+        return orderid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOrderid(int orderid) {
+        this.orderid = orderid;
     }
 
-    public String getNumber() {
+    public long getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setNumber(long number) {
+        IdWorker iw = new IdWorker(1);
+        try {
+            this.number = iw.nextId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public double getTotleprice() {
@@ -70,5 +78,16 @@ public class Order {
         this.status = status;
     }
 
-
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderid=" + orderid +
+                ", number=" + number +
+                ", totleprice=" + totleprice +
+                ", createTime=" + createTime +
+                ", status=" + status +
+                ", user=" + user +
+                ", address=" + address +
+                '}';
+    }
 }

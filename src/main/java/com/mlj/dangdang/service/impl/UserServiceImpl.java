@@ -4,6 +4,7 @@ import com.mlj.dangdang.dao.Userdao;
 import com.mlj.dangdang.model.User;
 import com.mlj.dangdang.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -32,6 +33,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Cacheable(cacheNames = "userCache")
     @Override
     public User get(int id) {
         return userdao.selectById(id);

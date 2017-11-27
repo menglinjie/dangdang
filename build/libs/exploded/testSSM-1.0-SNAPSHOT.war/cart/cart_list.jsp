@@ -10,25 +10,8 @@
     <link href="../css/shopping_vehicle.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../js/jquery-3.0.0.min.js"></script>
     <script type="text/javascript" src="../js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../js/login.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var bookId = $("#bookId").text();
-            var amount = $("#amount").val();
-            console.log(bookId);
+    <script type="text/javascript" src="../js/cart.js"></script>
 
-            function test1() {
-                var bookId = this.attr("name");
-                console.log(bookId);
-            }
-            function getamount() {
-                var amount = this.val();
-                console.log(amount);
-            }
-
-
-        })
-    </script>
 </head>
 </head>
 <body>
@@ -101,13 +84,11 @@
                     <td>
                             <%--<p id="bookId" style="display: none"><s:property value='value.book.bookid'/></p>--%>
                         <input class="del_num" type="text" size="3" maxlength="4"
-                               value="<s:property value="value.amount" /> " name="amount" id="amount"
-                               onblur="getamount(this)"/>
-                        <a href="#" id="bian" name="<s:property value='value.book.bookid'/>"
-                           onclick="test1(this)">变更</a>
+                               value="<s:property value="value.amount" /> " name="amount"/>
+                        <a href="#" class="biangeng" name="<s:property value='value.book.bookid'/>">变更</a>
                     </td>
                     <td>
-                        <a href="#">删除</a>
+                        <a href="#" class="shanchu" name="<s:property value='value.book.bookid'/>">删除</a>
                     </td>
                 </tr>
 
@@ -155,38 +136,44 @@
     <div class="del_title">
         您已删除以下商品，如果想重新购买，请点击“恢复”
     </div>
+
     <table class=tabl_del id=del_table>
         <tbody>
 
+        <s:iterator value="#session.cart2.map">
+            <tr>
+                <td width="58" class=buy_td_6>
+                    &nbsp;
+                </td>
+                <td width="365" class=t2>
+                    <a href="/book/showBook.action?bookId=<s:property value="value.book.bookid" />">
+                        <s:property value="value.book.bname"/>
+                    </a>
+                </td>
+                <td width="106" class=buy_td_5>
+                    ￥<s:property value="value.book.price"/>
+                </td>
+                <td width="134" class=buy_td_4>
+                    <span>￥<s:property value="value.book.ddprice"/></span>
+                </td>
+                <td width="56" class=buy_td_1>
+                        <%--/cart/recover.action?bookId=<s:property value="value.book.bookid" />--%>
+                    <a href="#" class="huifu" name="<s:property value='value.book.bookid'/>">
+                        恢复
+                    </a>
+                </td>
+                <td width="16" class=objhide>
+                    &nbsp;
+                </td>
+            </tr>
 
-        <tr>
-            <td width="58" class=buy_td_6>
-                &nbsp;
-            </td>
-            <td width="365" class=t2>
-                <a href="#">Java基础</a>
-            </td>
-            <td width="106" class=buy_td_5>
-                ￥56
-            </td>
-            <td width="134" class=buy_td_4>
-                <span>￥50</span>
-            </td>
-            <td width="56" class=buy_td_1>
-                <a href="#">恢复</a>
-            </td>
-            <td width="16" class=objhide>
-                &nbsp;
-            </td>
-        </tr>
 
-
-        <tr class=td_add_bord>
-            <td colspan=8>
-                &nbsp;
-            </td>
-        </tr>
-
+            <tr class=td_add_bord>
+                <td colspan=8>
+                    &nbsp;
+                </td>
+            </tr>
+        </s:iterator>
 
         </tbody>
     </table>
@@ -198,7 +185,11 @@
 <!--页尾开始 -->
 <%@include file="../common/foot.jsp" %>
 <!--页尾结束 -->
+
 </body>
+<script type="text/javascript">
+
+</script>
 </html>
 
 

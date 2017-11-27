@@ -11,14 +11,44 @@
     <link href="../css/secBook_Show.css" rel="stylesheet" type="text/css"/>
     <link href="../css/list.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../js/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
     <script type="text/javascript" src="../js/rejister.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            function pageChange() {
+        $(function () {
+            var offsetX = 10 - $(".list_r_list_book").offset().left;
+            var offsetY = 10 - $(".list_r_list_book").offset().top;
+            var size = 2 * $('#img').width();
 
-            }
+            console.log(offsetX);
+            console.log(offsetY);
+            console.log(size);
+            $(".list_r_list_book").mouseover(function (event) {
+
+                console.log("鼠标移入");
+                console.log(event.pageY);
+                console.log(event.pageX);
+                var $target = $(event.target);
+                if ($target.is('img')) {
+                    $("<img class='tip' src='" + $target.attr("src") + "'>").css({
+                        "height": size,
+                        "width": size,
+                        "top": event.pageX + offsetX-100,
+                        "left": event.pageY + offsetY-100,
+                    }).appendTo($(this));
+                }
+            }).mouseout(function () {
+                $(".tip").remove();
+                console.log("鼠标移出");
+            }).mousemove(function (event) {
+                console.log("鼠标移动");
+                $(".tip").css(
+                    {
+                        "left": event.pageX + offsetX-100,
+                        "top": event.pageY + offsetY-100
+                    });
+            });
         })
+
+
     </script>
 </head>
 <body>
@@ -172,7 +202,12 @@
                     <div class="list_r_list">
 							<span class="list_r_list_book"><a name="link_prd_img" href='/book/showBook.action?bookId=
                                 <s:property value="#book.bookid" />'>
-								<img src="<s:property value="#book.img" /> "/> </a> </span>
+								<img src="<s:property value="#book.img" /> " id="img"/>
+                            </a>
+
+                            </span>
+
+
                         <h2>
                             <a name="link_prd_name" href='/book/showBook.action?bookId=
                                 <s:property value="#book.bookid" />'><s:property value="#book.bname"/></a>

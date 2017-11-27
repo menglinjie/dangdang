@@ -18,12 +18,12 @@
                     window.setTimeout(function () {
                         count--;
                         if (count > 0) {
-                            $('#h6').html("页面将在" + count + "秒后转回：http://localhost:8080/order/address_form.jsp" +
+                            $('#h6').html("页面将在" + count + "秒后转回：http://localhost:8080/address/getAll.action" +
                                 "，如果转入失败，请单击");
-                            $("#h6").append("<a href='../order/address_form.jsp'>这里</a>");
+                            $("#h6").append("<a href='/address/getAll.action'>这里</a>");
                             jump(count);
                         } else {
-                            location.href = "http://localhost:8080/order/address_form.jsp";
+                            location.href = "http://localhost:8080/address/getAll.action";
                         }
                     }, 1000);
                 }

@@ -58,7 +58,7 @@
                     您还不是当当网用户？
                 </p>
                 <p class="set_up">
-                    <a href="register_form.jsp">创建一个新用户&gt;&gt;</a>
+                    <a href="/user/register_form.jsp">创建一个新用户&gt;&gt;</a>
                 </p>
             </div>
         </div>

@@ -1,7 +1,9 @@
 package com.mlj.dangdang.model;
 
 
-public class CartItem {
+import java.io.Serializable;
+
+public class CartItem implements Serializable {
     //商品
     private Book book;
     //商品数量

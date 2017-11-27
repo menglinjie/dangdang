@@ -1,9 +1,10 @@
 package com.mlj.dangdang.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cart {
+public class Cart implements Serializable {
     //存放数据的Map
     private Map<Integer, CartItem> map = new HashMap<Integer, CartItem>();
     //总价

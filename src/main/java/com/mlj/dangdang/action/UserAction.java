@@ -131,7 +131,10 @@ public class UserAction extends ActionSupport {
         if (isLogin == true) {
             Struts2ScopeUtil.setSessionAttribute("user", u);//将user放入session
             loginMessage = "登陆成功！";
-            if (request.getSession().getAttribute("to") != null) {
+
+            System.out.println(Struts2ScopeUtil.getSessionAttribute("to"));
+
+            if (Struts2ScopeUtil.getSessionAttribute("to") != null && Struts2ScopeUtil.getSessionAttribute("to") != "") {
                 request.getSession().removeAttribute("to");//清除session,防止下次登录跳转位置出错
                 return "address";
             } else {
@@ -199,7 +202,7 @@ public class UserAction extends ActionSupport {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        if (request.getSession().getAttribute("to") != null) {
+        if (Struts2ScopeUtil.getSessionAttribute("to") != null && Struts2ScopeUtil.getSessionAttribute("to") != "") {
             request.getSession().removeAttribute("to");//清除session,防止下次登录跳转位置出错
             return "address";
         } else {

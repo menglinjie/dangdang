@@ -2,8 +2,10 @@ package com.mlj.dangdang.service;
 
 import com.mlj.dangdang.model.Category;
 import com.mlj.dangdang.util.Page;
+import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
+
 
 public interface CategoryService {
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mlj.dangdang.dao.OrderDao">
+
+    <insert id="add" parameterType="Order" keyProperty="orderid" useGeneratedKeys="true">
+        INSERT INTO dorder (number, totleprice, create_time, status, user_id, address_id)
+        VALUES (#{number}, #{totleprice}, #{createTime}, #{status}, #{user.id}, #{address.id})
+    </insert>
+
+</mapper>

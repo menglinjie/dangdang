@@ -12,8 +12,8 @@ public interface CartService {
     public Cart add(int bookId, Cart oldCart);
 
     //修改数量
-    public void update(int bookId, Cart oldCart, int amount);
+    public Cart update(int bookId, Cart oldCart, int amount);
 
     //删除购物车商品
-    public void delete(int bookId, Cart oldCart);
+    public Cart delete(int bookId, Cart oldCart);
 }

@@ -7,9 +7,45 @@
     <link href="../css/second.css" rel="stylesheet" type="text/css"/>
     <link href="../css/secBook_Show.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../js/jquery-3.0.0.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../js/jquerySession.js"></script>
     <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var offsetX = 10 - $(".img").offset().left;
+            var offsetY = 10 - $(".img").offset().top;
+            var size = 2 * $('#img').width();
+
+            console.log(offsetX);
+            console.log(offsetY);
+            console.log(size);
+            $(".img").mouseover(function (event) {
+
+                console.log("鼠标移入");
+                console.log(event.pageY);
+                console.log(event.pageX);
+                var $target = $(event.target);
+                if ($target.is('img')) {
+                    $("<img class='tip' src='" + $target.attr("src") + "'>").css({
+                        "height": size,
+                        "width": size,
+                        "top": event.pageX + offsetX-100,
+                        "left": event.pageY + offsetY-100,
+                    }).appendTo($(this));
+                }
+            }).mouseout(function () {
+                $(".tip").remove();
+                console.log("鼠标移出");
+            }).mousemove(function (event) {
+                console.log("鼠标移动");
+                $(".tip").css(
+                    {
+                        "left": event.pageX + offsetX-100,
+                        "top": event.pageY + offsetY-100
+                    });
+            });
+        })
+
+
+    </script>
 </head>
 <body>
 &nbsp;

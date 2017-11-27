@@ -1,7 +1,7 @@
 //文档开始
 $(document).ready(function () {
     var userId = $("#hide-session").text();
-    console.log(userId);
+    //console.log(userId);
     if (userId == "") {//用户未登录
         $("#logout-a").hide();//隐藏“登出”
         $("#huanying").hide();//隐藏欢迎语句

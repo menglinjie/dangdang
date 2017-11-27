@@ -39,7 +39,7 @@
             </h4>
             <div class="mess">
                 <span class="write_in">请尽快前往您的邮箱进行激活操作！</span>
-                <%--<input name="code" type="text" id="validatecode" class="yzm_text"/>--%>
+                <%--<input name="code1" type="text" id="validatecode" class="yzm_text"/>--%>
                 <%--<input class="finsh" type="submit" value="完 成" id="Button1"/>--%>
                 <span id="errorMsg" class="no_right"></span>
             </div>
